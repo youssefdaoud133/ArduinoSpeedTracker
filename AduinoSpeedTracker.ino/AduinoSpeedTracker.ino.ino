@@ -1,5 +1,10 @@
 #define trigPin 11
 #define echoPin 12
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+// Set the LCD address to 0x27 for a 16 chars and 2 line display
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+String home = "APA AI Assistant";
 
 float calc_distance() {
   digitalWrite(trigPin, LOW);
@@ -22,10 +27,27 @@ float calc_speed() {
   return speed;
 }
 
+// return home 
+    void returnhome(void)
+    {
+      lcd.clear();
+      for (int i = 0; i<16; i++)
+      {
+        lcd.setCursor(i,0);
+        lcd.write(home.charAt(i));
+        delay(250);
+      }
+    };
+
 void setup() {
   Serial.begin(9600);
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
+   // initialize the LCD
+  lcd.init();
+   // Turn on the blacklight and print a message.
+  lcd.backlight();
+  returnhome();
 }
 
 void loop() {
