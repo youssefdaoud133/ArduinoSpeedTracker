@@ -21,7 +21,7 @@ float calc_speed() {
   float d1 = calc_distance();         // Measure Distance 1 at time zero //
   delay(50);                          // wait for 50 ms to measure the other distance
   float d2 = calc_distance();             // Measure Distance 2 at time 50 ms //
-  float speed = abs((d1 - d2) / (50 * 0.001);      // Calculate speed in m/s using formula v=d/t //
+  float speed = abs((d1 - d2) / (50 * 0.001));      // Calculate speed in m/s using formula v=d/t //
   return speed;
 }
 
